@@ -17,6 +17,8 @@
 /// @param {String} $breakpoint [null] - The breakpoint to use for the cell generation. If using with the `breakpoint()` mixin this will be set automatically unless manually entered.
 /// @param {Boolean} $vertical [false] - Set to true to output vertical (height) styles rather than widths.
 /// @param {List} $output [(base size gutters)] - Cell parts to output. You will need to generate others parts of the cell seperately, it may not work correctly otherwise.
+@use "sass:math";
+
 @mixin xy-grid-layout(
   $n,
   $selector: '.cell',
@@ -28,7 +30,7 @@
   $vertical: false,
   $output: (base size gutters)
 ) {
-  $size: percentage(1/$n);
+  $size: percentage(math.div(1, $n));
 
   & > #{$selector} {
     @include xy-cell($size, $gutter-output, $gutters, $gutter-type, $gutter-position, $breakpoint, $vertical, $output);

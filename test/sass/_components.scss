@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "true";
 
 @import '../../scss/util/math';
@@ -9,7 +11,7 @@
 
   @include test('Ratio to Percentage [function]') {
     $test: ratio-to-percentage(3 by 4);
-    $expect: 4 / 3 * 100%;
+    $expect: math.div(4, 3) * 100%;
 
     @include assert-equal($test, $expect,
       'Creates a percentage value from a ratio');
